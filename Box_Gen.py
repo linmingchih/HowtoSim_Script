@@ -23,9 +23,9 @@ from System.Windows import Window
 
 #Replace MyWindow class from Visual Studio
 def buildBlock(x,y,z):
-    import ScriptEnv
-    ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-    oDesktop.RestoreWindow()
+    #import ScriptEnv
+    #ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
+    #oDesktop.RestoreWindow()
     oProject = oDesktop.GetActiveProject()
     oDesign = oProject.GetActiveDesign()
     oEditor = oDesign.SetActiveEditor("3D Modeler")
@@ -54,9 +54,10 @@ def buildBlock(x,y,z):
             "UseMaterialAppearance:=", False,
             "IsLightweight:="	, False
         ])
+    oEditor.FitAll()
 
 class MyWindow(Window):
-    def __init__(self, desktop):
+    def __init__(self):
         wpf.LoadComponent(self, 'WpfApplication.xaml')
         
     def Button_Click(self, sender, e):
@@ -69,5 +70,5 @@ class MyWindow(Window):
 
 # Invoke GUI in AEDT. Don't Revise It.
 if __name__ == '__main__':
-	window = MyWindow(oDesktop)
+	window = MyWindow()
 	window.ShowDialog()
