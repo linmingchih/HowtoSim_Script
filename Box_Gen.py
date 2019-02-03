@@ -58,7 +58,7 @@ def buildBlock(x,y,z):
 
 class MyWindow(Window):
     def __init__(self):
-        wpf.LoadComponent(self, 'WpfApplication.xaml')
+        wpf.LoadComponent(self, 'Box_Gen.xaml')
         
     def Button_Click(self, sender, e):
         x=self.xsz.Text
