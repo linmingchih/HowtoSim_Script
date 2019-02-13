@@ -1,0 +1,27 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="Resizable Via Array" Height="191" Width="369" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFCDD2E5">
+    <Grid>
+        <GroupBox Header="Add Variables" Margin="5,5,121,0" VerticalAlignment="Top" MinHeight="20" Height="110" Background="#FFD6D6D6">
+            <Grid Margin="0">
+                <Label Content="Y axis" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="64"/>
+                <Label Content="X axis" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="64"/>
+                <Label Content="Name" HorizontalAlignment="Left" Margin="60,2,0,0" VerticalAlignment="Top" Width="64" HorizontalContentAlignment="Center"/>
+                <Label Content="Value" HorizontalAlignment="Left" Margin="140,2,0,0" VerticalAlignment="Top" Width="64" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="Nx" HorizontalAlignment="Left" Height="23" Margin="59,27,0,0" TextWrapping="Wrap" Text="dx" VerticalAlignment="Top" Width="65" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="Ny" HorizontalAlignment="Left" Height="23" Margin="59,55,0,0" TextWrapping="Wrap" Text="dy" VerticalAlignment="Top" Width="65" RenderTransformOrigin="1,0.522" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="Vx" HorizontalAlignment="Left" Height="23" Margin="139,27,0,0" TextWrapping="Wrap" Text="5mm" VerticalAlignment="Top" Width="65" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="Vy" HorizontalAlignment="Left" Height="23" Margin="139,55,0,0" TextWrapping="Wrap" Text="5mm" VerticalAlignment="Top" Width="65" RenderTransformOrigin="1,0.522" HorizontalContentAlignment="Right"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Number" HorizontalAlignment="Right" Height="110" Margin="247,5,10,0" VerticalAlignment="Top" Width="100" Background="#FFD6D6D6">
+            <Grid Margin="0">
+                <TextBox x:Name="Cx" HorizontalAlignment="Left" Height="23" Margin="10,27,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="65" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="Cy" HorizontalAlignment="Left" Height="23" Margin="10,55,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="65" RenderTransformOrigin="1,0.522" HorizontalContentAlignment="Right"/>
+            </Grid>
+        </GroupBox>
+        <Button Content="Build" Margin="247,120,10,9.6" VerticalAlignment="Center" Width="100" Height="32" Background="#FFD14424" Foreground="White" Click="Button_Click" HorizontalAlignment="Right"/>
+
+    </Grid>
+</Window> 
