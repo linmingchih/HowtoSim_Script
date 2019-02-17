@@ -1,0 +1,15 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="Differential Via Pair Cut Tool" Height="271.4" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF656161">
+    <Grid>
+        <TextBlock x:Name="tbMessage" Margin="10,10,9.6,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="130" Background="#FFFF7A7A" Foreground="White"/>
+        <TextBox x:Name="tbW" HorizontalAlignment="Left" Height="26" Margin="66,155,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="75" TextChanged="checkValid"/>
+        <TextBox x:Name="tbL" Height="26" Margin="0,155,10,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="75" TextChanged="checkValid" HorizontalAlignment="Right"/>
+        <Button x:Name="btCut" Content="Cut" Height="40" Margin="210,0,9.6,9.6" VerticalAlignment="Bottom" Click="Button_Click" Background="#FFEDC302" IsEnabled="False" FontSize="24"/>
+        <Label Content="Width:" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFAFCFC"/>
+        <Label Content="Length:" HorizontalAlignment="Left" Margin="151,155,0,0" VerticalAlignment="Top" Foreground="#FFFAFCFC" RenderTransformOrigin="0.439,0.383"/>
+        <TextBox x:Name="tbCutName" HorizontalAlignment="Left" Height="26" Margin="85,199,0,16.6" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" TextChanged="checkValid"/>
+        <Label Content="Cut Name:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="70" Foreground="#FFFAFCFC"/>
+    </Grid>
+</Window> 
