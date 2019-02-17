@@ -86,7 +86,7 @@ class viaCut():
         self.diff2=netpath(via2)
         self.ref=netpath(via3)
             
-        return 'diffnets:\n'+self.diff1+'\n'+self.diff2+'\n'+'refnet:\n'+self.ref
+        return 'diffnets:\n{}\n{}\n\nrefnet:\n{}'.format(self._getNet(via1),self._getNet(via2),self._getNet(via3))
 
         
     def showCutRegion(self, w=1, h=1):
@@ -104,7 +104,6 @@ class viaCut():
         
         self.oEditor.CutOutSubDesign(["NAME:Params","Name:=",name,"EMDesign:=",True,"SubDesign:=",False,"Within:=",True,"Without:=",False,"AutoGenExtent:=",False,"Expansion:=",0.1,"RoundCorners:=",True,"Increments:=",1,"InPlace:=",False,"ExtentSel:=",[],["NAME:Nets","net:=",[self.ref,True],"net:=",[self.diff1,True],"net:=",[self.diff2,True]],"Extent:=",["cw:=",False,"cl:=",True,"pt:=",["U:=",self.unit,"x:=",p0[0],"y:=",p0[1],"x:=",p1[0],"y:=",p1[1],"x:=",p2[0],"y:=",p2[1],"x:=",p3[0],"y:=",p3[1],"x:=",p0[0],"y:=",p0[1]]]])
   
-
 
 config='''import os, sys, re, clr
 
@@ -132,10 +131,12 @@ class MyWindow(Window):
             self.vC.showCutRegion(3,2)
             #self.tbMessage.Background=Colors.White
         except:
-            self.tbMessage.Text='Error! Vias are not correctly selected!\n\nPlease select 2 differential vias and then 1 ground via with Ctrl+Click.'
+            self.tbMessage.Text='''Error! Vias are not correctly selected!\n
+Please select 2 differential vias and then 1 ground via with Ctrl+Click before open this tool.'''
    
     def Button_Click(self, sender, e):
         self.vC.genCutDesign(self.tbCutName.Text)
+        self.Close()
     
     def checkValid(self, sender, e):
         try:
