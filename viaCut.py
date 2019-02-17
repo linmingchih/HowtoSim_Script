@@ -128,7 +128,7 @@ class MyWindow(Window):
         self.vC=viaCut(oProject)
         try:
             self.tbMessage.Text=self.vC.preprocess()
-            self.vC.showCutRegion(3,2)
+            self.vC.showCutRegion(2,1)
             #self.tbMessage.Background=Colors.White
         except:
             self.tbMessage.Text='''Error! Vias are not correctly selected!\n
