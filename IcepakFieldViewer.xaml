@@ -1,0 +1,31 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="IcepakFieldViewer" Height="221.3" Width="358.2">
+    <Grid>
+        <GroupBox Header="X axis" Margin="5,5,4.6,0" Background="#FFCBA08E" VerticalAlignment="Top" Height="55">
+            <Grid >
+                <Grid.ColumnDefinitions>
+
+                </Grid.ColumnDefinitions>
+                <Slider x:Name="sliderX" HorizontalAlignment="Right" Width="259" Height="20" Margin="0,6,60.6,6.8" IsEnabled="{Binding IsChecked, ElementName=checkBox}" ValueChanged="sliderX_ValueChanged" TickFrequency="0.1" IsSnapToTickEnabled="True" />
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="274,4,-0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="{Binding Value, ElementName=sliderX}" IsEnabled="{Binding IsChecked, ElementName=checkBox}"/>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Y axis" Margin="5,65,5,0" Background="#FF8E93CB" VerticalAlignment="Top" Height="55">
+            <Grid >
+                <Slider x:Name="sliderY" HorizontalAlignment="Right" Width="259" Height="20" Margin="0,6,60.6,6.8" IsEnabled="{Binding IsChecked, ElementName=checkBox1}" ValueChanged="sliderY_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="0.1" />
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="274,4,-0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="{Binding Value, ElementName=sliderY}" IsEnabled="{Binding IsChecked, ElementName=checkBox1}"/>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Z axis" Margin="5,125,5,0" Background="#FF8ECBA0" VerticalAlignment="Top" Height="55">
+            <Grid >
+                <Slider x:Name="sliderZ" HorizontalAlignment="Right" Width="259" Height="20" Margin="0,6,60.6,6.8" IsEnabled="{Binding IsChecked, ElementName=checkBox2}" ValueChanged="sliderZ_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="0.1" />
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="274,4,-0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="{Binding Value, ElementName=sliderZ}" IsEnabled="{Binding IsChecked, ElementName=checkBox2}"/>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window> 
