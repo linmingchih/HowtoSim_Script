@@ -1,0 +1,53 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="Differential Pair Generator" Height="281.4" Width="448.2" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Rectangle Fill="#FFE0E0E2" Height="82" Margin="0,170,0,0" Stroke="#FFF4F4F5" VerticalAlignment="Top" MouseEnter="Rectangle_MouseEnter"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="30" Margin="100,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Background="#FFFFCD42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="textBox1_MouseEnter" Text="5" TextChanged="calculate"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="30" Margin="265,20,0,0" TextWrapping="Wrap" Text="{Binding Text, ElementName=textBox1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="70" Background="#FFFFCD42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="textBox1_MouseEnter" TextChanged="calculate"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="170,20,0,0" TextWrapping="Wrap" Text="4.811" VerticalAlignment="Top" Width="95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="textBox_MouseEnter" TextChanged="calculate">
+            <TextBox.BorderBrush>
+                <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+            </TextBox.BorderBrush>
+        </TextBox>
+        <TextBox x:Name="tb_T" HorizontalAlignment="Left" Height="30" Margin="341,19,0,0" TextWrapping="Wrap" Text="1.4" VerticalAlignment="Top" Width="35" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="tb_T_MouseEnter" TextChanged="calculate">
+            <TextBox.BorderBrush>
+                <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+            </TextBox.BorderBrush>
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </TextBox.Background>
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.765"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox x:Name="tb_H" HorizontalAlignment="Left" Height="24" Margin="378,70,-1.4,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="tb_H_MouseEnter" TextChanged="calculate">
+            <TextBox.BorderBrush>
+                <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
+            </TextBox.BorderBrush>
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.054"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox x:Name="tb_dk" HorizontalAlignment="Left" Height="65" Margin="45,50,0,0" TextWrapping="Wrap" Text="4.4" VerticalAlignment="Top" Width="350" Background="#FF11B424" BorderBrush="#FF11B424" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="tb_dk_MouseEnter" TextChanged="calculate"/>
+        <Button Content="Create" HorizontalAlignment="Left" Height="39" Margin="311,193,0,0" VerticalAlignment="Top" Width="100" Background="#FFEFC245" FontSize="20" Click="Button_Click"/>
+        <TextBox x:Name="tb_l" HorizontalAlignment="Left" Height="30" Margin="205,198,0,0" TextWrapping="Wrap" Text="200" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="lb1" Content="" HorizontalAlignment="Left" Margin="45,130,0,0" VerticalAlignment="Top" Width="205" Foreground="#FF008CFF"/>
+        <Label x:Name="lb2" Content="Label" HorizontalAlignment="Left" Margin="255,130,0,0" VerticalAlignment="Top" Width="140"/>
+        <Rectangle Fill="#FFFFCD42" HorizontalAlignment="Left" Height="10" Margin="45,115,0,0" Stroke="#FFEFC245" VerticalAlignment="Top" Width="350"/>
+        <TextBox x:Name="tb_w" HorizontalAlignment="Left" Height="30" Margin="75,198,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="W(mil):" HorizontalAlignment="Left" Margin="20,200,0,0" VerticalAlignment="Top"/>
+        <Label Content="L(mil):" HorizontalAlignment="Left" Margin="150,200,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window> 
