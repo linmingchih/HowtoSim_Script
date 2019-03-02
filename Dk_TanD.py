@@ -16,7 +16,7 @@ def calculate(relative_permittivity,bulk_conductivity):
 
     td=[Cond_p/(2*pi*Freq)/(Dk_p*8.8542e-12) for Cond_p, Freq, Dk_p in zip(Cond,F,Dk)]
 
-    with open("d:/demo/Dk_tanD.csv",'w') as f:
+    with open("Dk_tanD.csv",'w') as f:
         f.write('Freq, Dk, TanD\n')
         for i,j,k in zip(F,Dk,td):
             f.write(str(i)+', ' + str(j)+', '+str(k)+'\n')
@@ -33,7 +33,7 @@ def generate_plot():
     
     name= ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(6)])
     
-    oModule.ImportTable("D:/demo/Dk_tanD.csv", name, "Table", True, True, ["Freq", "Dk", "TanD"], [True, False, False])
+    oModule.ImportTable("Dk_tanD.csv", name, "Table", True, True, ["Freq", "Dk", "TanD"], [True, False, False])
     oModule = oDesign.GetModule("ReportSetup")
     oModule.CreateReport(name, "Modal Solution Data", "Rectangular Plot", name+" : Table", [], 
         [
