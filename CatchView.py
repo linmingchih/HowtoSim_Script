@@ -63,8 +63,9 @@ class CatchView():
         import webbrowser, os
         webbrowser.open('file://' + os.path.realpath(self.html))  
 
+# Code is revised. There is a little different to the video
 cv=CatchView('d:/demo2', 'Testing2')
-cv.savePage('E_Field')
+cv.savePage('Structure')
 cv.genhtml()
 
         
