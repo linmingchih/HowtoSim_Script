@@ -58,14 +58,13 @@ class CatchView():
             for k in self.pages:
                 f.writelines('<H2>{}</H2>'.format(k))
                 for i, j in self.pages[k]:
-                    f.writelines('<img src="{}" bgcolor="#E6E6FA">'.format(j))
+                    f.writelines('<img src="{}">'.format(j))
                 
         import webbrowser, os
         webbrowser.open('file://' + os.path.realpath(self.html))  
 
 cv=CatchView('d:/demo2', 'Testing2')
 cv.savePage('E_Field')
-#cv.savePage('H_Field')   
 cv.genhtml()
 
         
