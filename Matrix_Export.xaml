@@ -1,0 +1,14 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="Q3D Matrix Export" Height="246" Width="300" Background="#FFFFCD42" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBox x:Name="tb1" Height="23" Margin="10,30,10,0" TextWrapping="Wrap" Text="d:/demo/" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb2" Height="23" Margin="10,80,10,0" TextWrapping="Wrap" Text="Setup1:Sweep1" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb3" Height="23" Margin="10,130,10,0" TextWrapping="Wrap" Text="Original" VerticalAlignment="Top"/>
+        <Label Content="Output Directory:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="272"/>
+        <Label Content="Solution:" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Width="272"/>
+        <Label Content="Context:" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="272"/>
+        <Button Content="Export" HorizontalAlignment="Right" Height="31" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="92" Click="Button_Click"/>
+    </Grid>
+</Window> 
