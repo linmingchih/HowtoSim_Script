@@ -72,10 +72,7 @@ class ffd_CDF():
         plt.yticks(np.arange(0, 1.1, 0.1))
         plt.xticks(np.arange(-40, 10, 5))
         plt.show()
-    
-    def save(self):
-        return self.CDF
-    
+ 
 cdf1=ffd_CDF('D:/Customer2019/2019_4_12_5G_CDF/exportfields.ffd')
 cdf1.plot()
 
