@@ -78,6 +78,6 @@ class ffd_CDF():
     
 cdf1=ffd_CDF('D:/Customer2019/2019_4_12_5G_CDF/exportfields.ffd')
 cdf1.plot()
-answer=cdf1.save()[-10:-1]
+
 
 
