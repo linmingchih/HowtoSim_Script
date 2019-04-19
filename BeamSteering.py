@@ -10,8 +10,8 @@ finally:
     sys.path.append(dll_dir)
     clr.AddReference('IronPython.Wpf')  
     
-    import wpf
-    from System.Windows import Window
+    import wpf, time
+    from System.Windows import Window, MessageBox
     os.chdir(os.path.dirname(__file__))
 '''
 exec(config)
@@ -68,8 +68,9 @@ class excitation():
                 w[j]=(0,0)
             w[i]=(1,0)
             self.setWeighting(w)
-            oModule.ExportRadiationFieldsToFile(["ExportFileName:=","{}/{}.ffd".format(folder, i),"SetupName:=","ffd","IntrinsicVariationKey:=","Freq={}".format(self.freq),"DesignVariationKey:=",self.variation,"SolutionName:=",self.solution])
-        
+            ffdfile="{}/{}.ffd".format(folder, i)
+            oModule.ExportRadiationFieldsToFile(["ExportFileName:=",ffdfile,"SetupName:=","ffd","IntrinsicVariationKey:=","Freq={}".format(self.freq),"DesignVariationKey:=",self.variation,"SolutionName:=",self.solution])
+                    
         oModule.DeleteFarFieldSetup(["ffd"])
 
 class ffd():
@@ -192,21 +193,25 @@ class MyWindow(Window):
         
     def bt_Click(self, sender, e):
         self.info.Text=''
-        AddInfoMessage(self.cb2.SelectedItem)
-        AddInfoMessage(self.cb3.SelectedItem)
-        AddInfoMessage(self.cb4.SelectedItem)
+
         
         self.exc=excitation()
         self.exc.setSolution(self.cb2.SelectedItem, self.cb3.SelectedItem, self.cb4.SelectedItem)
         self.exc.exportFFDforEachSource(self.temp)
+        self.disable=True
+        
         self.sources=self.exc.getSourceNames()
+        MessageBox.Show("Far Field Export Completed!", "Export Status")
     
     def info_MouseDoubleClick(self, sender, e):
         self.info.Text=str(self.sliderTheta.Value)
         pass
         
     def PreviewMouseLeftButtonUp(self, sender, e):
+        self.info.Text='Computing...'
+
         try:
+            self.info.Text='Computing...'
             flds=[(i, '{}/{}.ffd'.format(self.temp, i)) for i in self.sources]
             
             phased_exc={}
