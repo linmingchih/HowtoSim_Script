@@ -192,16 +192,17 @@ class MyWindow(Window):
         pass
         
     def bt_Click(self, sender, e):
-        self.info.Text=''
-
-        
-        self.exc=excitation()
-        self.exc.setSolution(self.cb2.SelectedItem, self.cb3.SelectedItem, self.cb4.SelectedItem)
-        self.exc.exportFFDforEachSource(self.temp)
-        self.disable=True
-        
-        self.sources=self.exc.getSourceNames()
-        MessageBox.Show("Far Field Export Completed!", "Export Status")
+        try:
+            self.info.Text=''
+            
+            self.exc=excitation()
+            self.exc.setSolution(self.cb2.SelectedItem, self.cb3.SelectedItem, self.cb4.SelectedItem)
+            self.exc.exportFFDforEachSource(self.temp)
+            self.sources=self.exc.getSourceNames()
+            MessageBox.Show("Far Field Export Completed!", "Export Status")
+        except:
+            MessageBox.Show("No Far Field to Export!", "Export Status")
+            
     
     def info_MouseDoubleClick(self, sender, e):
         self.info.Text=str(self.sliderTheta.Value)
