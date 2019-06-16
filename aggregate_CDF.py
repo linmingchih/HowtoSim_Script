@@ -82,47 +82,104 @@ class ffd():
         return x, y/y[-1]
     
     def plotRealizedGain(self):
-        plt.figure()
+        plt.figure(figsize=(8, 4))
         size=(self.theta[2], self.phi[2])
         gain_map=self.realized_gain.reshape(size)
+        plt.title('Map of Realized Gain(dB)')
         plt.xlabel('Phi (degree)')
         plt.ylabel('Theta (degree)')
-
-        plt.imshow(gain_map, cmap='rainbow')
+        maxV=np.max(gain_map)
+        [row, col] = np.where(gain_map==maxV)
+        plt.plot(col, row, 'w*')
+        plt.annotate(round(maxV,3), (col+3, row+3), color='white')
+        plt.imshow(gain_map, cmap='jet')
         plt.colorbar()
+        CS=plt.contour(gain_map)        
+        plt.clabel(CS, inline=1, fontsize=10)
         
+class aggregateffd():
+    def __init__(self, *args):
+        self.args=args
+        self.max_gain=args[0].realized_gain
+        self.beam_occupy=0*self.max_gain
+        
+        for beamid, i in enumerate(args[1:], 1):
+            for n in range(len(self.max_gain)):
+                if i.realized_gain[n]>self.max_gain[n]:
+                    self.beam_occupy[n]=beamid
+                    self.max_gain[n]=i.realized_gain[n]
 
-def aggregateffd(*args):
-    max_gain=args[0].realized_gain
-    beam_occupy=0*args[0].realized_gain
-    for beamid, i in enumerate(args[1:], 1):
-        for n in range(len(max_gain)):
-            if i.realized_gain[n]>max_gain[n]:
-                beam_occupy[n]=beamid
-                max_gain[n]=i.realized_gain[n]
+        self.map_size=(args[0].theta[2], args[0].phi[2])
 
-    x, y=[], []
-    accumulated_area=0
-    for gain, area in sorted(zip(max_gain, args[0].cell_area)):
-        x.append(gain)
-        accumulated_area+=area
-        y.append(accumulated_area)
     
-    map_size=(args[0].theta[2], args[0].phi[2])
-    return (x, y/y[-1]), max_gain.reshape(map_size), beam_occupy.reshape(map_size)
+    def plotCDF(self):
+        x, y=[], []
+        accumulated_area=0
+        for gain, area in sorted(zip(self.max_gain, self.args[0].cell_area)):
+            x.append(gain)
+            accumulated_area+=area
+            y.append(accumulated_area)
+        
+        plt.figure()
+        plt.title('Cumulative Distribution Function')        
+        plt.xlabel('Realized Gain (dB)')
+        plt.ylabel('CDF')
+        plt.grid(True)
+        plt.plot(x, y/y[-1])
+        plt.show()
+
+    
+    def plotGainMap(self):
+        gain_map=self.max_gain.reshape(self.map_size)
+        
+        plt.figure(figsize=(8, 4))
+        plt.title('Gain Map(dB)')
+        plt.xlabel('Phi (degree)')
+        plt.ylabel('Theta (degree)')
+        maxV=np.max(gain_map)
+        [row, col] = np.where(gain_map==maxV)
+        plt.plot(col, row, 'w*')
+        plt.annotate(round(maxV,3), (col+3, row+3), color='white')
+        plt.imshow(gain_map, cmap='jet')
+        plt.colorbar()
+        CS=plt.contour(gain_map)
+        plt.clabel(CS, inline=1, fontsize=10)        
+
+    
+    def plotBeamMap(self):
+        beam_map=self.beam_occupy.reshape(self.map_size)
+        
+        plt.figure(figsize=(8, 4))
+        plt.title('Beam Map')        
+        plt.xlabel('Phi (degree)')
+        plt.ylabel('Theta (degree)')        
+        plt.imshow(beam_map, cmap='rainbow')
+        plt.colorbar()        
+        plt.contour(beam_map)
+
 
 #%%
 
-x1=ffd('d:/demo3/ant1.ffd')
-x2=ffd('d:/demo3/ant2.ffd')
-x3=x1(2,20)+x2(5,90)
-print(x3.peak_realized_gain)
+x1=ffd('D:/demo5/28000000000/1.ffd')
+x2=ffd('D:/demo5/28000000000/2.ffd')
+x3=ffd('D:/demo5/28000000000/3.ffd')
+x4=ffd('D:/demo5/28000000000/4.ffd')
+x5=ffd('D:/demo5/28000000000/5.ffd')
+x6=ffd('D:/demo5/28000000000/6.ffd')
+x7=ffd('D:/demo5/28000000000/7.ffd')
+x8=ffd('D:/demo5/28000000000/8.ffd')
 
-gain=[]
-for i in range(360):
-    x3=x1+x2(1,i)
-    gain.append(x3.peak_realized_gain)
-    
-plt.figure()
-plt.plot(gain)
-plt.show()
+#%%
+
+y0=x1(1,0) +x3(1,0) +x5(1,0) +x7(1,0)
+y0.plotRealizedGain()
+y1=x1(1,0) +x3(1,75) +x5(1,150) +x7(1,225)
+y1.plotRealizedGain()
+y2=x1(1,0) +x3(1,150) +x5(1,300) +x7(1,450)
+y2.plotRealizedGain()
+
+#%%
+z=aggregateffd(y0, y1, y2)
+z.plotCDF()
+z.plotBeamMap()
+z.plotGainMap()
