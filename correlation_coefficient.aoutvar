@@ -1,0 +1,8 @@
+'_s11' 'S(1,1)' Complex '' dBTypeDoesntCare
+'_s21' 'S(2,1)' Complex '' dBTypeDoesntCare
+'_s12' 'S(1,2)' Complex '' dBTypeDoesntCare
+'_s22' 'S(2,2)' Complex '' dBTypeDoesntCare
+numerator 'mag(conjg(_s11)*_s12+conjg(_s21)*_s22)^2' Double '' dBTypeDoesntCare
+denominator '(1-(mag(_s11)^2+mag(_s21)^2))*(1-(mag(_s22)^2+mag(_s12)^2))' Double '' dBTypeDoesntCare
+correlation_coefficient 'numerator/denominator' Double '' dBTypeDoesntCare
+test 'conjg(1+2j)' Complex '' dBTypeDoesntCare
