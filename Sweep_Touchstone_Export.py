@@ -32,7 +32,7 @@ for i in sol.getReportType():
             continue
         for k in sol.getVariations(j):
             try:
-                snpfile="{}{}.sNp".format(oProject.GetPath(),k)
+                snpfile="{}{}.s{}p".format(oProject.GetPath(),k,oModule.GetEditSourcesCount())
                 oModule.ExportNetworkData(k, [j], 3, snpfile, ["All"], True, 50, "S", -1, 0, 15, True, False, False)
                 AddWarningMessage("Export: {}".format(snpfile))
             except:
