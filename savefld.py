@@ -38,9 +38,12 @@ def savefld(solution, freq, boundary, fld_file, resolution=(1,1,1)):
     res=['{}{}'.format(i, unit) for i in resolution]
     
     oModule = oDesign.GetModule("FieldsReporter")
-    oModule.ExportOnGrid(fld_file, range_min, range_max, res, solution, ["Freq:=", freq, "Phase:=", "0deg"],True,"Cartesian",["0mm","0mm","0mm"],False)
+    oModule.ExportOnGrid(fld_file, range_min, range_max, res, solution, ["Freq:=", freq, "Phase:=", "0deg"], True, "Cartesian",["0mm","0mm","0mm"],False)
 
-b1=getBoundaryofBox('RadiatingSurface')
-savefld('Setup1:LastAdaptive', '2500000000', b1, 'd:/demo/box.fld',(4,4,4))
-b2=getBoundaryofSheet('s1')
-savefld('Setup1:LastAdaptive', '2500000000', b2, 'd:/demo/sheet.fld',(2,2,2))
+#b1=getBoundaryofBox('Box1')
+#AddWarningMessage(str(b1))
+#savefld('Setup1:LastAdaptive', '2500000000', b1, 'd:/demo/box1.fld',(2,2,2))
+
+#b2=getBoundaryofSheet('Rectangle1')
+#AddWarningMessage(str(b2))
+#savefld('Setup1:LastAdaptive', '2500000000', b2, 'd:/demo/sheet.fld',(1,1,1))
