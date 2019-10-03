@@ -11,7 +11,7 @@ objs=[]
 stackup.append(('layers',len(oEditor.GetStackupLayerNames())))
 stackup.append(('nets',len(oEditor.GetNets())))
 
-types=['pin', 'via', 'rect', 'arc', 'line', 'poly', 'plg', 'circle void', 'line void','rect void', 'poly void', 'plg void', 'text', 'cell', 'Measurement', 'Port', 'Port Instance', 'Port','Instance Port', 'Edge Port', 'component', 'CS', 'S3D']
+types=['bondwire','pin', 'via', 'rect', 'arc', 'line', 'poly', 'plg', 'circle void', 'line void','rect void', 'poly void', 'plg void', 'text', 'cell', 'Measurement', 'Port', 'Port Instance', 'Port','Instance Port', 'Edge Port', 'component', 'CS', 'S3D']
 
 total=0
 for t in types:
