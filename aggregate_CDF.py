@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jun  7 19:24:49 2019
-
+Created on Fri Oct 19 19:24:49 2019
 @author: mlin
+
 """
 import matplotlib.pyplot as plt
+from collections import OrderedDict
 import numpy as np
 import copy
 
@@ -97,13 +98,13 @@ class ffd():
         CS=plt.contour(gain_map)        
         plt.clabel(CS, inline=1, fontsize=10)
         
-class aggregateffd():
+class aggregatebeam():
     def __init__(self, *args):
         self.args=args
-        self.max_gain=args[0].realized_gain
-        self.beam_occupy=0*self.max_gain
+        self.max_gain=np.copy(args[0].realized_gain)
+        self.beam_occupy=0*np.copy(self.max_gain)
         
-        for beamid, i in enumerate(args[1:], 1):
+        for beamid, i in enumerate(self.args[1:], 1):
             for n in range(len(self.max_gain)):
                 if i.realized_gain[n]>self.max_gain[n]:
                     self.beam_occupy[n]=beamid
@@ -127,6 +128,7 @@ class aggregateffd():
         plt.grid(True)
         plt.plot(x, y/y[-1])
         plt.show()
+        return (x, y/y[-1])
 
     
     def plotGainMap(self):
@@ -156,30 +158,48 @@ class aggregateffd():
         plt.imshow(beam_map, cmap='rainbow')
         plt.colorbar()        
         plt.contour(beam_map)
+        
+def plotCDFtable(table, png=None):
+    '''table={'A':(gain , cdf), 'B':(gain, cdf), }'''
+    
+    plt.figure()
+    plt.title('Cumulative Distribution Function')        
+    plt.xlabel('Realized Gain (dB)')
+    plt.ylabel('CDF')
+    plt.grid(True)
+    for i in table:
+        plt.plot(*table[i], label=i)
+    plt.legend()
+    if png:
+        plt.savefig(png)    
+    plt.show()
+
+    
+    
+#%%
+path='D:\OneDrive - ANSYS, Inc/Workshop/2019/2019_Q4_5G_Array_Modula_Analysis/28000000000/'
+x1=ffd(path+'4x2_array1_Module_0_Bump_h1.ffd')
+x2=ffd(path+'4x2_array1_Module_0_Bump_h2.ffd')
+x3=ffd(path+'4x2_array1_Module_0_Bump_h3.ffd')
+x4=ffd(path+'4x2_array1_Module_0_Bump_h4.ffd')
 
 
 #%%
 
-x1=ffd('D:/demo5/28000000000/1.ffd')
-x2=ffd('D:/demo5/28000000000/2.ffd')
-x3=ffd('D:/demo5/28000000000/3.ffd')
-x4=ffd('D:/demo5/28000000000/4.ffd')
-x5=ffd('D:/demo5/28000000000/5.ffd')
-x6=ffd('D:/demo5/28000000000/6.ffd')
-x7=ffd('D:/demo5/28000000000/7.ffd')
-x8=ffd('D:/demo5/28000000000/8.ffd')
+beam0=x1(1,0) +x2(1,0) +x3(1,0) +x4(1,0)
+#beam0.plotRealizedGain()
+beam1=x1(1,0) +x2(1,75) +x3(1,150) +x4(1,225)
+#beam1.plotRealizedGain()
+beam2=x1(1,0) +x2(1,150) +x3(1,300) +x4(1,450)
+#beam2.plotRealizedGain()
 
-#%%
-
-y0=x1(1,0) +x3(1,0) +x5(1,0) +x7(1,0)
-y0.plotRealizedGain()
-y1=x1(1,0) +x3(1,75) +x5(1,150) +x7(1,225)
-y1.plotRealizedGain()
-y2=x1(1,0) +x3(1,150) +x5(1,300) +x7(1,450)
-y2.plotRealizedGain()
-
-#%%
-z=aggregateffd(y0, y1, y2)
-z.plotCDF()
-z.plotBeamMap()
-z.plotGainMap()
+table=OrderedDict()
+z0=aggregatebeam(beam0, beam1, beam2)
+table['z0']=z0.plotCDF()
+z1=aggregatebeam(beam0, beam1)
+table['z1']=z1.plotCDF()
+z2=aggregatebeam(beam1, beam2)
+table['z2']=z2.plotCDF()
+z3=aggregatebeam(beam0, beam2)
+table['z3']=z3.plotCDF()
+plotCDFtable(table, 'd:/demo/aaa.png')
