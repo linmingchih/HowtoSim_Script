@@ -1,0 +1,16 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="DuplicateAlongPath" Height="186.25" Width="228.2" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF45245C">
+    <Grid>
+        <Label Content="Path:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="67" HorizontalContentAlignment="Right" Foreground="White"/>
+        <TextBox x:Name="path" HorizontalAlignment="Right" Height="26" Margin="0,41,10,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <Label Content="Object:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="67" HorizontalContentAlignment="Right" Foreground="White"/>
+        <TextBox x:Name="objects" HorizontalAlignment="Right" Height="26" Margin="0,10,10,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <Label Content="Pitch:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="67" HorizontalContentAlignment="Right" Foreground="White"/>
+        <TextBox x:Name="pitch" HorizontalAlignment="Right" Height="26" Margin="0,72,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Text="1" IsEnabled="{Binding IsChecked, ElementName=radioButton}"/>
+        <Button x:Name="duplicate" Content="Duplicate" HorizontalAlignment="Right" Height="34" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100" VerticalContentAlignment="Center" Click="duplicate_Click"/>
+        <RadioButton x:Name="onVertex" Content="On Vertex" HorizontalAlignment="Left" Height="15" Margin="10,0,0,30" VerticalAlignment="Bottom" Width="85" IsChecked="True" Foreground="White"/>
+        <RadioButton x:Name="radioButton" Content="On Pitch" HorizontalAlignment="Left" Height="15" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="83" RenderTransformOrigin="0.547,-0.12" Foreground="White"/>
+    </Grid>
+</Window> 
