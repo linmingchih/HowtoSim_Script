@@ -10,9 +10,9 @@ oProject = oDesktop.GetActiveProject()
 oDesign = oProject.GetActiveDesign()
 oEditor = oDesign.SetActiveEditor("3D Modeler")
 
-r=1
-unit='mm'
-n=3
+r=1 #radius
+unit='mm' #unit
+n=4 #iteration
 
 models=[]
 def triangle(x,y,r):
