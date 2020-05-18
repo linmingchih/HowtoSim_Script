@@ -62,11 +62,17 @@ def getLocations(x, dl):
     
     return results
     
-def polylinePoints(pline):
+def polylinePoints(plines):
     points=[]
-    for i in oEditor.GetVertexIDsFromObject(pline):
-        u=oEditor.GetVertexPosition(i)
-        points.append([float(u[0]),float(u[1]),float(u[2])])
+    for pline in plines:
+        for i in oEditor.GetVertexIDsFromObject(pline):
+            u=oEditor.GetVertexPosition(i)
+            px = map(float, u)
+            if points and px == points[-1]:
+                pass
+            else:
+                points.append(px)
+            
     p0=points[0]
     points=[[i[0]-p0[0], i[1]-p0[1], i[2]-p0[2]] for i in points[0:]]
     return points
@@ -77,8 +83,9 @@ class MyWindow(Window):
         oDesktop.ClearMessages("", "", 2)        
         try:
             selections=oEditor.GetSelections()
-            self.path.Text=selections[1]
+            self.path.Text=str(selections[1:])
             self.objects.Text=selections[0]
+            self.selections=selections
         except:
             raise Exception('Please Select "object" and then "polyline"!')
         
@@ -88,7 +95,7 @@ class MyWindow(Window):
         pitch=self.pitch
         unit=oEditor.GetModelUnits()
         
-        points=polylinePoints(self.path.Text)        
+        points=polylinePoints(self.selections[1:])        
         if not self.onVertex.IsChecked:
             points=getLocations(points, float(self.pitch.Text))
            
