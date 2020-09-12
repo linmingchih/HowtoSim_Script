@@ -1,0 +1,16 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="Create Circuit Port on Components" Height="340.419" Width="442.814" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="main_grid">
+        <ComboBox x:Name="component_cb" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="139" SelectionChanged="component_cb_SelectionChanged"/>
+        <Label Content="3. Check Pins to set Ports" HorizontalAlignment="Left" Margin="179,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.235,0.409" Width="237"/>
+        <Label Content="1. Select Component" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.235,0.409" Width="164"/>
+        <ListBox x:Name="pins_lb" HorizontalAlignment="Right" Margin="0,41,10,10" Width="237" Background="#FFE4EAFF" SelectionMode="Extended" PreviewMouseRightButtonDown="pins_lb_PreviewMouseRightButtonDown">
+            <CheckBox x:Name="pin_cb" Content="a1"/>
+        </ListBox>
+        <ComboBox x:Name="reference_cb" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="139" SelectionChanged="reference_cb_SelectionChanged"/>
+        <Label Content="2. Select  Reference Net" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.235,0.409" Width="164"/>
+        <Button x:Name="create_bt" Content="4. Create Ports" HorizontalAlignment="Left" Height="39" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="139" IsDefault="True" Click="create_bt_Click"/>
+    </Grid>
+</Window> 
