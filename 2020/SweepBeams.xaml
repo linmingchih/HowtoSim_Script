@@ -1,0 +1,14 @@
+<Window 
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+       Title="SweepBeams" Height="233.691" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <TextBox x:Name="folder_tb" Height="23" Margin="10,36,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="folder_tb_TextChanged" PreviewMouseDoubleClick="folder_tb_PreviewMouseDoubleClick"/>
+        <Label Content="Folder of Beams" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.676,1.039"/>
+        <Button x:Name="reset_bt" Content="Reset Excitation" HorizontalAlignment="Right" Margin="0,75,10,0" VerticalAlignment="Top" Width="101" Height="30" Click="reset_bt_Click"/>
+        <GroupBox Header="Message" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="78">
+            <TextBox x:Name="message_tb" Margin="0" TextWrapping="Wrap" IsReadOnly="True"/>
+        </GroupBox>
+        <Button x:Name="set_bt" Content="Set Beams" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="101" Height="30" Click="set_bt_Click"/>
+    </Grid>
+</Window> 
