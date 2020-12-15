@@ -31,7 +31,7 @@ Nport = int(touchstone.split('.')[-1][1:-1])
 unit_mapping = {'HZ':1e0, 'KHZ':1e3, 'MHZ':1e6, 'GHZ':1e9}
 data = []
 port_dict = {}
-with open(touchstone) as f:
+with open(touchstone, encoding="utf-8") as f:
     for i in f:
         if i[0] =='!':
             try:
@@ -80,7 +80,7 @@ except:
     pass
 
 text = [] 
-with open(touchstone) as f:
+with open(touchstone, encoding="utf-8") as f:
     for i in f:
         if i[0] in ['!', '#']:
             continue
