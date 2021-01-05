@@ -1,7 +1,7 @@
 from math import floor, ceil
 from collections import defaultdict
 import itertools
-import json, time
+import time
 import clr
 clr.AddReference("System.Windows.Forms")
 from System.Windows.Forms import MessageBox
@@ -13,7 +13,7 @@ oDesign = oProject.GetActiveDesign()
 oEditor = oDesign.SetActiveEditor("3D Modeler")
 
 unit = oEditor.GetModelUnits()
-size = 0.2
+size = 0.1
 n = 0
 
 def float_range(xmin, xmax, step):
@@ -188,10 +188,7 @@ for obj in data:
             
             i0, j0, k0, xlen0 = i, j, k, xlen
             ylen = 1
-
-
-
-
+    models[obj] += [(i0, j0, k0, xlen0, ylen)]
 for obj in models:
     m = material[obj]
     if 'vacuum' in m:
