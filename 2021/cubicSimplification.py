@@ -13,7 +13,7 @@ oDesign = oProject.GetActiveDesign()
 oEditor = oDesign.SetActiveEditor("3D Modeler")
 
 unit = oEditor.GetModelUnits()
-size = 0.1
+size = 0.2
 n = 0
 
 def float_range(xmin, xmax, step):
@@ -72,7 +72,20 @@ def changecolor(name, code):
             ]
         ])
 
-
+def continuous_count(x):
+    result = []
+    i0, loc0 = x[0]
+    count = 1
+    for i, loc in x[1:]:
+        if i == i0:
+            count += 1
+        else:
+            result.append((i0, loc0, count))
+            i0, loc0 = i, loc
+            count = 1
+    result.append((i0, loc0, count))
+    return result
+    
 def createcell(x, y, z, Nx, Ny, material):
     global n
     newname = oEditor.CreateBox(
@@ -144,33 +157,21 @@ zrange = float_range(zmin, zmax, size)
 
 data = defaultdict(list)
 
-xlen = 0
-o_name = ''
-i0, j0, k0 = 0, 0, 0
 for k , j in itertools.product(zrange, yrange):
-    o_name = ''
+    queue = []
     for i in xrange:
         o = oEditor.GetBodyNamesByPosition(["NAME:Parameters", "XPosition:=", str(i)+unit,"YPosition:=", str(j)+unit, "ZPosition:=", str(k)+unit])
-        
-        if not o:
-            o = ['']
-        
-        if o[0] == o_name:
-            xlen += 1
+        if o:
+            queue.append((o[0],i))
         else:
-            if xlen:
-                data[o_name] += [(i0, j0, k0, xlen)]
-                xlen = 0  
-                o_name = o[0]
-                i0, j0, k0 = i, j, k
-            else:
-                o_name = o[0]
-                i0, j0, k0 = i, j, k
+            queue.append(('dummy',i))
     
-if o_name and xlen:
-    data[o_name] = [(i, j, k, xlen)]
+    for obj, loc, xlen in continuous_count(queue):
+        if obj in total:
+            data[obj] += [(loc, j, k, xlen)]
     
 models = defaultdict(list)
+
 for obj in data:
     if obj == '':
         continue
@@ -184,13 +185,14 @@ for obj in data:
             ylen += 1
         else:
             models[obj] += [(i0, j0, k0, xlen0, ylen)]
+            
             i0, j0, k0, xlen0 = i, j, k, xlen
             ylen = 1
-  
-AddWarningMessage(str(models))
-        
-for obj in models:
 
+
+
+
+for obj in models:
     m = material[obj]
     if 'vacuum' in m:
         continue
