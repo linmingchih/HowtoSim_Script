@@ -127,5 +127,8 @@ oEditor.Import(
 	])
     
 for name in x:
-    material, color = x[name]
-    changeMaterial(name, material, color)
+    try:
+        material, color = x[name]
+        changeMaterial(name, material, color)
+    except:
+        pass
