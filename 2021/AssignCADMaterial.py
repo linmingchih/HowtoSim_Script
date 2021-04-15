@@ -1,8 +1,3 @@
-# ----------------------------------------------
-# Script Recorded by ANSYS Electronics Desktop Version 2021.1.0
-# 1:55:23  Apr 15, 2021
-# mingchih.lin@ansys.com
-# ----------------------------------------------
 import sys
 import clr
 clr.AddReference("System.Windows.Forms")
