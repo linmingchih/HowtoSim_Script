@@ -87,7 +87,7 @@ class fieldCut():
 #Code Start-----------------------------------
 class MyWindow(Window):
     def __init__(self):
-        wpf.LoadComponent(self, 'Field_Camera_v2.xaml')
+        wpf.LoadComponent(self, 'Field_Camera.xaml')
         
         self.bb=boundingbox()
         self.coordinate=self.bb.getCenter()
