@@ -1,18 +1,17 @@
-config='''import os, sys, re, clr
-from math import log, sqrt, exp
-m=re.search('(.*Win64)', __file__)
-dll_dir=m.group(1)+'/common/IronPython/DLLs'
+import os, sys, re, clr
+import math, cmath
+import collections
+
+win64_dir = oDesktop.GetExeDir()
+dll_dir = os.path.join(win64_dir, 'common/IronPython/DLLs')
 sys.path.append(dll_dir)
 clr.AddReference('IronPython.Wpf')
+
 import wpf
 from System.Windows import Window
-
+from System.Windows.Controls import ListBoxItem
+from System.Windows.Forms import OpenFileDialog, SaveFileDialog, DialogResult, FolderBrowserDialog
 os.chdir(os.path.dirname(__file__))
-
-#import System.Windows.Forms as WinForms 
-#WinForms.MessageBox.Show('Debug')
-'''
-exec(config)
 
 class createDiff():
     def __init__(self, oDesktop):
