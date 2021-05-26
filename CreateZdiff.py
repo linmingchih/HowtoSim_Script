@@ -1,5 +1,6 @@
 import os, sys, re, clr
 import math, cmath
+from math import sqrt, log, exp
 import collections
 
 win64_dir = oDesktop.GetExeDir()
