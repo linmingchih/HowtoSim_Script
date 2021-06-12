@@ -234,7 +234,7 @@ def ExportQ3D(aedt_path):
     oEditor = oDesign.SetActiveEditor("3D Modeler")
 
 #------------------------------------------------------------------------------
-# Get Q3D nets & objects beloing to the net
+# Get Q3D nets & objects beloning to the net
 #------------------------------------------------------------------------------
 
 def getQ3DNets():
