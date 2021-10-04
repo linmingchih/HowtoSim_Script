@@ -43,13 +43,13 @@ class html():
         self.data += ['<h2>[{}]</h2>'.format(x)]
 
     def H3(self, x):
-        self.data += ['<h3>[{}]</h3>'.format(x)]
+        self.data += ['<h3 style="color:green;">[{}]</h3>'.format(x)]
         
     def p(self, x):
         self.data += ['<p>{}</p>'.format(x)]
     
     def strong(self, x):
-         self.data += ['<strong>{}</strong>'.format(x)]
+         self.data += ['<strong style="color:blue;">{}</strong>'.format(x)]
          
     def ul(self, x):
         self.data += ['<ul>'] + ['<li>{}</li>'.format(i) for i in x] + ['</ul>']
