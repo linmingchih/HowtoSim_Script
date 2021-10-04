@@ -19,8 +19,9 @@ css = '''
 '''
 
 class html():
-    def __init__(self, file_path):        
-        self.file_path = file_path
+    def __init__(self, file_path):
+        
+        self.file_path = os.path.abspath(file_path)
         self.data = []
     
     def __enter__(self):
@@ -71,7 +72,7 @@ class html():
                       '<p>{}</p>'.format(content),
                       '</details>']
         
-with html('d:/demo/test.html') as h:
+with html('./test.html') as h:
     h.H1('HFSS Setting Report')
     date = datetime.today().strftime('%Y-%m-%d')
     time = datetime.now().strftime("%H:%M:%S")
