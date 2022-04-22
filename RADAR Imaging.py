@@ -1,22 +1,41 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May  3 07:32:40 2019
 
-@author: mlin
-"""
-from numpy import loadtxt, vectorize, reshape, zeros, arange, append
+from numpy import vectorize, reshape, zeros, arange, append, array
 from numpy import array, exp, fft, sqrt, meshgrid
 import scipy.constants as const
 import matplotlib.pyplot as plt
+
+def loadtxt(csv_path):
+    freq = {}
+    with open(csv_path) as f:
+        text = f.readlines()
+        for line in text[1:]:
+            try:
+                _, _, f, value = line.strip().split(',')
+            
+                if float(f) not in freq:
+                    freq[float(f)] = [float(value)]
+                else:
+                    freq[float(f)] += [float(value)]
+            except:
+                pass
+            
+    result = []
+    for f, values in freq.items():
+        result += values
+    
+    return array(list(freq.keys())), array(result)
+            
+x = loadtxt('D:/demo/re.csv')           
+
 
 class RADAR_Image():
     size=0
     
     def __init__(self, freal, fimag):
-        dreal=loadtxt(freal, delimiter=',', skiprows=1, )
-        dimag=loadtxt(fimag, delimiter=',', skiprows=1, )
-        self.freq=1e9*dreal[:,0]
-        self.data=vectorize(complex)(dreal[:,1:], dimag[:,1:])
+        freq, dreal=loadtxt(freal)
+        freq, dimag=loadtxt(fimag)
+        self.freq = freq*1e9
+        self.data=vectorize(complex)(dreal, dimag)
     
     def _compute(self, z0, ape=0.4):
         global size
@@ -45,7 +64,7 @@ class RADAR_Image():
             result+=self._compute(z0=i, ape=ape)
         return abs(result)
 
-Fre='D:/demo_image/re.csv'
-Fim='D:/demo_image/im.csv'
+Fre='D:/demo/re.csv'
+Fim='D:/demo/im.csv'
 RI=RADAR_Image(Fre, Fim)
 plt.imshow(RI.calculate(21, 0.35))
