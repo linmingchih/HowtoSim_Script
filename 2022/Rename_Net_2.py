@@ -22,9 +22,9 @@ for layer in db:
         if net not in result:
             result[net] = []
         names = oEditor.GetBodyNamesByPosition(["NAME:Parameters", 
-                                                "XPosition:=","{}{}".format(x, unit), 
-                                                "YPosition:=","{}{}".format(y, unit), 
-                                                "ZPosition:=","{}{}".format(z, unit)
+                                                "XPosition:=","{:.6f}{}".format(x, unit), 
+                                                "YPosition:=","{:.6f}{}".format(y, unit), 
+                                                "ZPosition:=","{:.6f}{}".format(z, unit)
                                                 ])
         for name in names:
             if 'fill' in name or 'airbox' in name or 'UNNAMED' in name:
@@ -60,4 +60,5 @@ for net in result:
     except:
         pass
 
+AddWarningMessage(str(result['GND']))
 oDesktop.AddMessage(oProject.GetName(), oDesign.GetName(),0,'Completed!')
