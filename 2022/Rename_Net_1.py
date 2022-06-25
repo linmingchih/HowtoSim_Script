@@ -31,7 +31,7 @@ for layer in oEditor.GetStackupLayerNames():
         if otype in ['Pin', 'Via']:
             location = oEditor.GetPropertyValue('BaseElementTab', i, 'Location')
         elif otype in ['line', 'poly']:
-            location = oEditor.GetPropertyValue('BaseElementTab', i, 'Pt0')
+            location = oEditor.GetPropertyValue('BaseElementTab', i, 'Pt1')
         else:
             continue
         

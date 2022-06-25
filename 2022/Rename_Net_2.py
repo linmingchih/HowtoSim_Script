@@ -1,11 +1,10 @@
-# ----------------------------------------------
-# Script Recorded by ANSYS Electronics Desktop Version 2021.1.0
-# 14:33:37  Apr 16, 2021
-# ----------------------------------------------
 import json, os
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
+
+# from win32com import client
+# oApp = client.Dispatch("Ansoft.ElectronicsDesktop.2022.1")
+# oDesktop = oApp.GetAppDesktop()
+# oDesktop.RestoreWindow()
+
 oDesktop.ClearMessages("","",2)
 oProject = oDesktop.GetActiveProject()
 oDesign = oProject.GetActiveDesign()
@@ -28,33 +27,37 @@ for layer in db:
                                                 "ZPosition:=","{}{}".format(z, unit)
                                                 ])
         for name in names:
-            if 'fill' in name or 'airbox' in name:
+            if 'fill' in name or 'airbox' in name or 'UNNAMED' in name:
                 continue
             if name not in result[net]:
                 result[net].append(name)
+
+
 total = len(result)
 n = 0
 for net in result:
     oDesktop.ClearMessages("","",2)
     n+=1
     oDesktop.AddMessage(oProject.GetName(), oDesign.GetName(),0,'{}/{}'.format(n,total))
-    
-    oEditor.ChangeProperty(
-        [
-            "NAME:AllTabs",
+    try:
+        oEditor.ChangeProperty(
             [
-                "NAME:Geometry3DAttributeTab",
+                "NAME:AllTabs",
                 [
-                    "NAME:PropServers"                    
-                ] + result[net],
-                [
-                    "NAME:ChangedProps",
+                    "NAME:Geometry3DAttributeTab",
                     [
-                        "NAME:Name",
-                        "Value:="		, net.replace('<', '_').replace('>', '_')
+                        "NAME:PropServers"                    
+                    ] + result[net],
+                    [
+                        "NAME:ChangedProps",
+                        [
+                            "NAME:Name",
+                            "Value:="		, net.replace('<', '_').replace('>', '_').replace('-', '_')
+                        ]
                     ]
                 ]
-            ]
-        ])
+            ])
+    except:
+        pass
 
 oDesktop.AddMessage(oProject.GetName(), oDesign.GetName(),0,'Completed!')
